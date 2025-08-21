@@ -1,10 +1,7 @@
 include $(TOPDIR)/rules.mk
  
 PKG_NAME:=l2-isolation
-PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
- 
-PKG_BUILD_DIR:=$(BUILD_DIR)/l2-isolation-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
  
@@ -28,6 +25,9 @@ endef
 define Package/l2-isolation/install
         $(INSTALL_BIN) $(PKG_BUILD_DIR)/files/etc/init.d/isolation $(1)/etc/init.d/isolation
 		$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/usr/bin/set_isolation $(1)/usr/bin/set_isolation
+endef
+
+define Build/Compile
 endef
 
 define Package/l2-isolation/postinst
