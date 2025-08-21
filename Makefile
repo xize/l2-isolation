@@ -4,10 +4,11 @@ PKG_NAME:=l2-isolation
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
  
-PKG_BUILD_DIR:=$(BUILD_DIR)/l2-isolation-$(PKG_VERSION)
-PKG_SOURCE:=l2-isolation-$(PKG_VERSION).tar.gz
+PKG_SOURCE_VERSION:=
+
+PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/xize/l2-isolation
-PKG_HASH:=skip
+PKG_MIRROR_HASH:=skip
 
 include $(INCLUDE_DIR)/package.mk
  
