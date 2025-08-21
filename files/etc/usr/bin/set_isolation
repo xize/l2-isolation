@@ -1,0 +1,32 @@
+#!/bin/sh
+
+. /lib/functions.sh
+
+enabled=$(uci -q get isolation.@global[0].enabled)
+
+handle_global() {
+        local config="$1"
+        config_list_foreach "$config" networks handle_networks
+}
+
+
+handle_networks() {
+        local dsaface="$1"
+        [ -z "$dsaface" ] && exit 0;
+        logger -t "l2-isolation" "adding ebtables isolation rule for $dsaface"
+        ebtables -A FORWARD --logical-in "$dsaface" -j DROP
+}
+
+if [ "$enabled" = 1 ];
+then
+        ebtables -F
+        logger -t "l2-isolation" "clearing ebtables before we continue."
+
+        config_load isolation
+        config_foreach handle_global global test
+else
+        logger -t "l2-isolation" "disabled, only clearing ebtables."
+        ebtables -F
+fi
+
+exit 0
