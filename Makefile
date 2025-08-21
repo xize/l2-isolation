@@ -23,9 +23,9 @@ define Build/Configure
 endef
  
 define Package/l2-isolation/install
-    $(INSTALL_DIR) $(1)/etc/init.d
-    $(INSTALL_BIN) ./files/etc/init.d/isolation $(1)/etc/init.d/isolation
-    $(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/etc/init.d/isolation $(1)/etc/init.d/isolation
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) ./files/usr/bin/set_isolation $(1)/usr/bin/set_isolation
 endef
 
